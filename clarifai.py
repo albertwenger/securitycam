@@ -11,5 +11,7 @@ probs = result["results"][0]["result"]["tag"]["probs"]
 for ts_i, ts_v in enumerate(timestamps):
    print "Timestamp: " + str(ts_v)
    for class_i, class_v in enumerate(classes[ts_i]):
-      print "Class: " + class_v + " Prob: " + str(probs[ts_i][class_i])
-
+       prob_v = probs[ts_i][class_i]
+       print "Class: " + class_v + " Prob: " + str(prob_v)
+       if (class_v == "people" and prob_v >= 0.9):
+          print "Discovered a person"
