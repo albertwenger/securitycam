@@ -1,10 +1,10 @@
+import os
 from twilio.rest import TwilioRestClient 
  
-# put your own credentials here 
-ACCOUNT_SID = "AC4e8c087debcf6bb904516f045d4ddd1b" 
-AUTH_TOKEN = "556974b0add2c093732b37f302cd722b" 
- 
-client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN) 
+TWILIO_ACCOUNT_SID = os.environ["TWILIO_ACCOUNT_SID"]
+TWILIO_AUTH_TOKEN = os.environ["TWILIO_AUTH_TOKEN"] 
+
+client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN) 
  
 client.messages.create(
     to = "+19173851022", 
