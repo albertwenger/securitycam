@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>SecurityCam</title>
+        <link rel="stylesheet" href="//assets-cdn.ziggeo.com/v1-stable/ziggeo.css" />
+        <script src="//assets-cdn.ziggeo.com/v1-stable/ziggeo.js"></script>
+        <script>
+            ZiggeoApi.token = "13234d4509cd5858e459a24e1494520d";
+            ZiggeoApi.Config.webrtc = true;
+        </script>
+        <script src="//code.jquery.com/jquery-2.2.3.min.js"></script>
+
+    </head>
+
+    <body>
+
+        <!-- barebones recorder configured to record 10 seconds at a time -->
+        <ziggeo ziggeo-id="camera"
+                ziggeo-limit = 10
+                ziggeo-countdown = 0
+                ziggeo-perms='forbidrerecord' 
+                ziggeo-disable_first_screen
+                ziggeo-disable_snapshots
+                ziggeo-disable_device_test
+                ziggeo-disable_timer>
+        </ziggeo>
+
+        <script>
+
+            // record whenever the camera is ready
+            ZiggeoApi.Events.on("ready_to_record", function (data) {
+                console.log("ready");
+                var camera = ZiggeoApi.Embed.get("camera");
+                camera.record();
+            });
+
+            // reset the recorder after video submitted
+            ZiggeoApi.Events.on("submitted", function (data) {
+                console.log(data.video.token);
+                var camera = ZiggeoApi.Embed.get("camera");
+                camera.reset();
+            });
+
+        </script>
+
+    </body>
+
+</html>
