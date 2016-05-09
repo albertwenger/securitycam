@@ -20,8 +20,8 @@ class ZiggeoHandler(tornado.web.RequestHandler):
         TWILIO_AUTH_TOKEN = os.environ["TWILIO_AUTH_TOKEN"]
         client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
         client.messages.create(
-            to = "+19173851022",
-            from_ = "+16462332156",
+            to = "your mobile number",
+            from_ = "your twilio number",
             body = "Person detected, view video http://" +  video_url + ".mp4",
         )
 
